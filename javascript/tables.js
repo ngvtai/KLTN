@@ -322,7 +322,7 @@ class sile_change extends HTMLElement {
         `;
     }
    }
-   class list_rate extends HTMLElement {
+class list_rate extends HTMLElement {
     constructor() {
     super();
     this.attachShadow({mode: 'open'});
@@ -342,19 +342,15 @@ class sile_change extends HTMLElement {
             margin-left:auto;
             margin-right:auto;
             width:500px;
-           
         }
         .list_rate{
             height:80px;
-
         }
         </style>
-
         <div class="list_rate2">
             <div class="list_rate" >
                  <slot  name="list_add"  ></slot>
             </div>
-
         </div>
         `;
     }

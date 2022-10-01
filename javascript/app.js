@@ -1,9 +1,4 @@
 var customApi='http://localhost:3000/rate';
-// function start()
-// {
-    
-// }
-// start();
 function send(data)
 {
     // console.log(data);

@@ -123,7 +123,7 @@ class button_open extends HTMLElement {
           color:green;
       }
       </style>
-      <button class="button_open">khảo sát</button>
+      <button class="button_open">${this.getAttribute('title')||"Mở Khảo sát"}</button>
       `;
     }
     
