@@ -164,28 +164,43 @@ class table_view_2 extends HTMLElement {
               length_table.style.display="block";
             }
           });
-          var file_send={
-                user_id: "sd",
-                quyen: "nhan vien",
-                func: "dsds"
-            };
+          var rate_value=[];
+          var rate_value_name=[];
+        var rate_text=[];
+        var rate_text_name=[];
         // send(file_send);
           this.querySelector('button-send').addEventListener('click',()=>{
             const arr_rate=this.querySelectorAll('stars-rate');
             for (let i = 0; i < arr_rate.length; i++) {
-                file_send["rate_"+arr_rate[i].getAttribute('name')]=arr_rate[i].getAttribute('value'); 
+                rate_value.push(arr_rate[i].getAttribute('value'));
+                rate_value_name.push(arr_rate[i].getAttribute('name'));
+                 // file_send["input_"+arr_rate[i].getAttribute('name')]=arr_rate[i].getAttribute('value'); 
             }
             const arr_input=this.querySelectorAll('input-table');
             for (let i = 0; i < arr_input.length; i++) {
-                file_send["input_"+arr_input[i].getAttribute('name')]=arr_input[i].getAttribute('value'); 
+                rate_text.push(arr_input[i].getAttribute('value'));
+                rate_text_name.push(arr_input[i].getAttribute('name'));
+                // file_send["input_"+arr_input[i].getAttribute('name')]=arr_input[i].getAttribute('value'); 
             }
             const arr_text=this.querySelectorAll('textarea-table');
             for (let i = 0; i < arr_text.length; i++) {
-                file_send["txt_"+arr_text[i].getAttribute('name')]=arr_text[i].shadowRoot.querySelector('.textarea_table').value; 
+                rate_text.push(arr_text[i].shadowRoot.querySelector('.textarea_table').value);
+                rate_text_name.push(arr_text[i].getAttribute('name'));
+                // file_send["txt_"+arr_text[i].getAttribute('name')]=arr_text[i].shadowRoot.querySelector('.textarea_table').value; 
             }
+            var file_send={
+                "name_user":"nguyen van tai",
+                "id_user":"12",
+                "id_chucnang":this.getAttribute('name'),
+                "name_chucnang":this.querySelector("lable-table").getAttribute('title'),
+                "rate_value":rate_value,
+                "rate_value_name":rate_value_name,
+                "rate_text":rate_text,
+                "rate_text_name":rate_text_name,
+                    
+        };
+            console.log(file_send);
             send(file_send);
-            // console.log(file_send);
-
           });
     }
    }

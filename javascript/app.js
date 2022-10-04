@@ -1,4 +1,4 @@
-var customApi='http://localhost:3000/rate';
+var customApi='http://localhost:8000/v1/rate';
 function send(data)
 {
     // console.log(data);
