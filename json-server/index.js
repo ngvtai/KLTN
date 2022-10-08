@@ -5,23 +5,22 @@ const mongoose=require("mongoose");
 var BodyParser=require("body-parser");
 const morgan=require("morgan");
 const dotenv=require("dotenv");
-const authorRoute=require("./router/author");
-
+const authorRoute=require("./router/router");
 
 app.use(BodyParser.json({limit:"50mb"}));
 app.use(cors());
 app.use(morgan("common"));
 dotenv.config();
 
-
-mongoose.connect(process.env.MONGODB_URL,()=>{
- console.log("conneting mongodb");
-})
-
-//router
-
+if(process.env.MONGODB_URL!="")
+{
+    mongoose.connect(process.env.MONGODB_URL,()=>{
+        console.log("conneting mongodb");
+       })
     app.use("/v1/rate",authorRoute);
-    
+}
+app.use("/",authorRoute);
+ 
 app.listen(8000,()=>{
-    console.log("server running");
+    console.log("server running localhost 8000");
 })
