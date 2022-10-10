@@ -1,8 +1,8 @@
-const {rate_table,Rate_table_mysql}=require("../model/model");
-const authorController={
+const {mongodb_rate,mysql_rate}=require("../model/model");
+const mongodb_controll={
     insert_mongo:async(req,res)=>{
         try {
-              const newrate=new rate_table(req.body);
+              const newrate=new mongodb_rate(req.body);
              const saveAuthor=await newrate.save();
              res.status(200).json(saveAuthor);
         } catch (error) {
@@ -12,15 +12,17 @@ const authorController={
     },
     get_mongo:async(req,res)=>{
         try {
-            const rate_get=await rate_table.find();
+            const rate_get=await mongodb_rate.find();
             res.status(200).json(rate_get);
         } catch (error) {
             res.status(500).json(error);
         }
     },
+};
+const mysql_controll={
     insert_mysql:async(req,res)=>{
         try {
-                 Rate_table_mysql.get_all(function(data){
+            mysql_rate.get_all(function(data){
                 res.send({result: data});
             })  
               
@@ -28,9 +30,19 @@ const authorController={
             
         }
     },
+    select_id_mysql:async(req,res)=>{
+        try {
+            mysql_rate.getby_id(req.params.id_user,function(data){
+                    res.send({result: data});
+                });
+              
+        } catch (error) {
+            
+        }
+    },
     insert_test_mysql:async(req,res)=>{
         try {
-            var data=Rate_table_mysql.get_all2(req.params.id_user)
+            var data=mysql_rate.get_all2(req.params.id_user)
                 res.send({result: data});
                   
         } catch (error) {
@@ -40,7 +52,7 @@ const authorController={
     insert_test_mysql2:async(req,res)=>{
         try {
            var data=req.body;
-           Rate_table_mysql.create(data,function(response){
+           mysql_rate.create_mysql(data,function(response){
             res.send({result: response});
             });      
         } catch (error) {
@@ -50,15 +62,23 @@ const authorController={
     remove_mysql:async(req,res)=>{
         try {
            var id=req.params.id;
-           Rate_table_mysql.remove(id,function(response){
+           mysql_rate.remove_mysql(id,function(response){
+            res.send({result: response});
+            });      
+        } catch (error) {
+            
+        }
+    }, 
+    update_mysql:async(req,res)=>{
+        try {
+            var data=req.body;
+            mysql_rate.update_mysql(data,function(response){
             res.send({result: response});
             });      
         } catch (error) {
             
         }
     },
-
-    
 };
 
-module.exports=authorController;
+module.exports={mongodb_controll,mysql_controll};

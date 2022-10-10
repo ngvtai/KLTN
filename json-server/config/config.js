@@ -1,14 +1,21 @@
 const mysql=require("mysql");
+const pool=require("pg").Pool();
 const dotenv=require("dotenv");
-
-if(process.env.DB_HOST!="")
-{   console.log('hello');
-    const mysqlconnet=mysql.createConnection(
+const mongoose=require("mongoose");
+dotenv.config();
+const pgp = require('pg-promise')(/* options */);
+var mysqlconnet;
+var mongodbconnet;
+var postgresconnet;
+if(process.env.MYSQL_HOST!="")
+{
+    console.log(process.env.MYSQL_HOST+" "+process.env.MYSQL_USER+" "+process.env.MYSQL_NAME);
+    mysqlconnet=mysql.createConnection(
         {
-            host: process.env.DB_HOST|| 'localhost',    
-            user: process.env.DB_USER||'root',
-            password: process.env.DB_PASS||'',
-            database: process.env.DB_NAME||'test'
+            host: process.env.MYSQL_HOST,    
+            user: process.env.MYSQL_USER,
+            password: process.env.MYSQL_PASS,
+            database: process.env.MYSQL_NAME
         }
     );
     mysqlconnet.connect((err)=>{
@@ -17,28 +24,23 @@ if(process.env.DB_HOST!="")
             console.log(err);
         }
         else {
-             console.log("ket noi thanh cong mysql");
+             console.log("conneting mysql");
         }
-    })
-    // app.get("/createtable",(req,res)=>{
-    //     let sql='insert into abc';
-    //     mysqlconnet.query(sql,(err,result)=>{
-    //         if(err) throw err;
-    //         console.log(result);
-    //         res.send("comp");
-    //     })
-    // } )
-    // app.get("/insertdb",(req,res)=>{
-       
-    //     let post={
-    //         title:"body",body:"sss"
-    //     }
-    //     let sql='insert into abc ?';
-    //     mysqlconnet.query(sql,post,(err,result)=>{
-    //         if(err) throw err;
-    //         console.log(result);
-    //         res.send("comp");
-    //     })
-    // } )
+    });   
+} 
+else if(process.env.MONGODB_URL!="")
+{
+    mongodbconnet=mongoose.connect(process.env.MONGODB_URL,()=>{
+        console.log("conneting mongodb");
+       });
+}else if(process.env.POSTGRES_URL!="")
+{
+     postgresconnet = new pool({
+        user:"postgres",
+        host:"localhost",
+        database:"test",
+        password:"123",
+        port:5432
+     })
 }
-module.exports= mysqlconnet;
+module.exports= {mysqlconnet,mongodbconnet,postgresconnet};
