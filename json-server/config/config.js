@@ -1,5 +1,5 @@
 const mysql=require("mysql");
-const pool=require("pg").Pool();
+const pool=require("pg").Pool;
 const dotenv=require("dotenv");
 const mongoose=require("mongoose");
 dotenv.config();
@@ -38,9 +38,18 @@ else if(process.env.MONGODB_URL!="")
      postgresconnet = new pool({
         user:"postgres",
         host:"localhost",
-        database:"test",
+        database: "test ",
         password:"123",
         port:5432
      })
+     postgresconnet.connect((err)=>{
+        if(err)
+        {
+            console.log(err);
+        }
+        else {
+             console.log("conneting postgressql");
+        }
+     });
 }
 module.exports= {mysqlconnet,mongodbconnet,postgresconnet};
