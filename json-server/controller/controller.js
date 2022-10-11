@@ -1,4 +1,5 @@
-const {mongodb_rate,mysql_rate}=require("../model/model");
+const {mongodb_rate,mysql_rate,postgres_rate}=require("../model/model");
+const JWT =require("../JWT/_JWT");
 const mongodb_controll={
     insert_mongo:async(req,res)=>{
         try {
@@ -83,7 +84,7 @@ const mysql_controll={
 const postgressql_controll={
     insert_postgres:async(req,res)=>{
         try {
-            mysql_rate.get_all(function(data){
+            postgres_rate.get_all(function(data){
                 res.send({result: data});
             })  
               
@@ -93,7 +94,7 @@ const postgressql_controll={
     },
     select_id_postgres:async(req,res)=>{
         try {
-            mysql_rate.getby_id(req.params.id_user,function(data){
+            postgres_rate.getby_id(req.params.id_user,function(data){
                     res.send({result: data});
                 });
               
@@ -103,7 +104,7 @@ const postgressql_controll={
     },
     insert_test_postgres:async(req,res)=>{
         try {
-            var data=mysql_rate.get_all2(req.params.id_user)
+            var data=postgres_rate.get_all2(req.params.id_user)
                 res.send({result: data});
                   
         } catch (error) {
@@ -113,7 +114,7 @@ const postgressql_controll={
     insert_test_postgres2:async(req,res)=>{
         try {
            var data=req.body;
-           mysql_rate.create_postgres(data,function(response){
+           postgres_rate.create_postgres(data,function(response){
             res.send({result: response});
             });      
         } catch (error) {
@@ -123,7 +124,7 @@ const postgressql_controll={
     remove_postgres:async(req,res)=>{
         try {
            var id=req.params.id;
-           mysql_rate.remove_postgres(id,function(response){
+           postgres_rate.remove_postgres(id,function(response){
             res.send({result: response});
             });      
         } catch (error) {
@@ -133,7 +134,7 @@ const postgressql_controll={
     update_postgres:async(req,res)=>{
         try {
             var data=req.body;
-            mysql_rate.update_postgres(data,function(response){
+            postgres_rate.update_postgres(data,function(response){
             res.send({result: response});
             });      
         } catch (error) {
