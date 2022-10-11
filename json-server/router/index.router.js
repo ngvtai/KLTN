@@ -1,32 +1,8 @@
-const {mongodb_controll,mysql_controll,postgressql_controll}=require("../controller/controller");
-const { mongodb_rate } = require("../model/model");
-const JWT =require("../JWT/_JWT");
+const {mongodb_controll,mysql_controll,postgressql_controll}=require("../controller/rate.controller");
+const { mongodb_rate } = require("../model/rate.model");
+
 
 const router=require("express").Router();
-//JSONWEBTOKEN
-  router.get("/token", async function(req,res) {
-    try {
-      var user={
-        "username":"admin",
-        "password":"123"
-      };
-      const _token=await JWT.make(user); 
-      res.send({_token:_token});
-    } catch (error) {
-        console.log(error);
-    }
-  
-  });
-  router.get("/check_token", async function(req,res) {
-    try {
-      var token="deyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6IjEyMyJ9LCJpYXQiOjE2NjU0NTI5NDksImV4cCI6MTY2NTQ1NjU0OX0.kcLh33U3alHpjSAHX4UcE_WZUEzWJ1JfTItDosWRsdo";
-      const data=await JWT.check(token); 
-      res.send({data:data});
-    } catch (error) {
-        res.send("ma nay khong dung");
-    }
-  
-  });
 
  //add rate mongodb
   router.post("/insert_mongodb", mongodb_controll.insert_mongo);

@@ -119,10 +119,10 @@ const postgres_rate=function(rate){
     this.id_user =rate.id_user;
     this.id_chucnang =rate.id_chucnang;
     this.name_chucnang =rate.name_chucnang;
-    this.rate_text ="'["+rate.rate_text+"]'";
-    this.rate_text_name ="'["+rate.rate_text_name+"]'";
-    this.rate_value ="'["+rate.rate_value+"]'";
-    this.rate_value_name ="'["+rate.rate_value_name+"]'";
+    this.rate_text =rate.rate_text;
+    this.rate_text_name =rate.rate_text_name;
+    this.rate_value =rate.rate_value;
+    this.rate_value_name =rate.rate_value_name;
 }
 postgres_rate.get_all=function(restful){
     postgresconnet.query("SELECT * FROM rate", function(err,postgres_rate){

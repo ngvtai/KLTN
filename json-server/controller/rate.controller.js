@@ -1,5 +1,5 @@
-const {mongodb_rate,mysql_rate,postgres_rate}=require("../model/model");
-const JWT =require("../JWT/_JWT");
+const {mongodb_rate,mysql_rate,postgres_rate}=require("../model/rate.model");
+
 const mongodb_controll={
     insert_mongo:async(req,res)=>{
         try {
@@ -81,11 +81,12 @@ const mysql_controll={
         }
     },
 };
+
 const postgressql_controll={
     insert_postgres:async(req,res)=>{
         try {
             postgres_rate.get_all(function(data){
-                res.send({result: data});
+                res.send({result: data.rows});
             })  
               
         } catch (error) {
