@@ -131,11 +131,19 @@ thực hiện `title` là giá trị hiển thị ra ngoài .
 ```
 ![image](https://user-images.githubusercontent.com/111570888/193398381-201c9e4a-ed52-4c0d-a3ad-a35676897386.png)
 
-> Rest Api
+> Restful Api
 ***
+theo mô hình MVC
+Model
+
+Controll
+
+View
 
 ![Untitled Diagram (1)](https://user-images.githubusercontent.com/111570888/195147107-d0b96e7f-5086-4bfa-91a2-4dfec54a1b53.jpg)
 
+
+JSONWEBTOKEN
 
 ![image](https://user-images.githubusercontent.com/111570888/195152585-08b9ec26-070f-4923-bfc1-08484d61eb0c.png)
 
