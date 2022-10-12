@@ -36,10 +36,10 @@ else if(process.env.MONGODB_URL!="")
 }else if(process.env.POSTGRES_URL!="")
 {
      postgresconnet = new pool({
-        user:"postgres",
-        host:"localhost",
-        database: "test ",
-        password:"123",
+        user:process.env.POSTGRES_USER,
+        host:process.env.POSTGRES_URL,
+        database: process.env.POSTGRES_DATABASE,
+        password:process.env.POSTGRES_PASS,
         port:5432
      })
      postgresconnet.connect((err)=>{
