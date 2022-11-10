@@ -1,0 +1,40 @@
+
+.silebar {
+    width: 300px;
+    float: left;
+    margin-top: 3px;
+    padding: 0;
+    margin-right: 10px;
+  }
+  
+  .silebar a {
+    text-decoration: none;
+    line-height: 50px;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    background-color: #eee;
+    color: black;
+    display: block;
+   
+    text-decoration: none;
+  }
+  
+  
+  .silebar a:hover {
+    background-color: #ccc;
+  }
+  
+  .silebar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  .silebar .label-silebar{
+    color: rgb(255, 255, 255);
+    line-height: 50px;
+    width: 100%;
+    font-size: 40px;
+    height: 50px;
+    text-align: center;
+    background: rgb(74, 32, 226);
+} 

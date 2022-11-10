@@ -1,7 +1,8 @@
-const {mongodb_controll,mysql_controll,postgressql_controll}=require("../controller/user.controller");
+const {mongodb_controll}=require("../controller/user.controller");
 const router=require("express").Router();
-router.post("/login_mongo",mongodb_controll.login_mongodb);
-router.post("/login_mysql",mysql_controll.login_mysql);
-router.post("/login_postgres",postgressql_controll.login_postgres);
-
+router.get("/login",mongodb_controll.login);
+router.get("/changeuser",mongodb_controll.changeuser);
+router.get("/getvaitro",mongodb_controll.getvaitro);
+router.post("/insertuser",mongodb_controll.insertuser);
+router.post("/insertvaitro",mongodb_controll.insertvaitro);
 module.exports=router;
