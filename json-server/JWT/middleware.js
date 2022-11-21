@@ -7,14 +7,12 @@ let isAuth=async function(req, res, next ){
             req.auth=audata;
             next();
         } catch (error) {
-            return res.send({data:"ban chua giu kem data"});
+            console.log(error);
+            return res.send({_token:12});
         }
-     
     }
         else{
-            return res.send({data:"ban chua co ma token"});}
-    console.log(req.headers);
-
+            return res.send({_token:1});}
 }
 module.exports = {
     isAuth:isAuth,

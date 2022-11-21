@@ -15,7 +15,6 @@ let make=function(user){
         );
 })};
 //check if tokenTimeout true false
-
 const checktimeout = function(token){
     return new Promise(
         function(resolve, reject) {
@@ -27,7 +26,6 @@ const checktimeout = function(token){
             }
             )});
 } 
-
 module.exports={
     make:make,
     check:checktimeout,

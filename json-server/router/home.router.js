@@ -15,7 +15,7 @@ const router=require("express").Router();
   });
   router.get("/check_token", async function(req,res) {
     try {
-      var token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6IjEyMyJ9LCJpYXQiOjE2NjU0NTgwMDIsImV4cCI6MTY2NTQ2MTYwMn0.fqUYtnsKTbcQl2JwGdDtTIPtQbTqCAlvN2pQZxyeKDI";
+      var token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6IjEyMyJ9LCJpYXQiOjE2Njg0NzcxODcsImV4cCI6MTY2ODQ4MDc4N30.sqlfDWFMTCOhuJ7kkUdE6loJv3-RL28-x9oPlDb2Gvw";
       const data=await JWT.check(token); 
       res.send({data:data});
     } catch (error) {

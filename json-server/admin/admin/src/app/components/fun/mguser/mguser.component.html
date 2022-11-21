@@ -1,0 +1,49 @@
+
+<div class="body"  >
+   <app-menu></app-menu>
+    <div class="table_show">
+            <div class="header_content">
+                <label>Quản Lý Tài khoản</label>
+            </div>
+            <div class="tool">
+                <div class="box-search">
+                   <label>Tìm Kiếm </label> <input class="search" type="text" [(ngModel)]="sreach" (ngModelChange)="Search();" placeholder="vui long search">
+                </div>
+                <div class="toolss"> 
+                    <button (click)="deleteuser()"> <fa-icon [icon]="faTrash"></fa-icon></button>
+                    <button (click)="AddUser(!exittable);" class="add"><fa-icon [icon]="faPlus"></fa-icon></button>
+                </div>
+            </div>
+            <table class="list-table" border="1" cellspacing="0" cellpadding="5">
+                <thead>
+                    <tr>  
+                        <th  width="1%"><input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
+                         <th width="2%"(click)="sort('i')">STT&nbsp; <fa-icon [icon]="faSort"></fa-icon></th>
+                        <th  width="15%"(click)="sort('tenQT')">Tên&nbsp;   <fa-icon [icon]="faSort"></fa-icon></th>
+                        <th  width="10%"(click)="sort('idVT')">Mã vai Trò&nbsp;   <fa-icon [icon]="faSort"></fa-icon></th>
+                        <th  width="10%"(click)="sort('username')">UserName&nbsp;   <fa-icon [icon]="faSort"></fa-icon></th>
+                         <th width="10%">Hệ Thống Quản Lý</th>
+                         <th width="1%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let userarr of userQT | orderBy: key: reverse | paginate: {itemsPerPage:10,currentPage:p}; let i=index;" >
+                        <td><input type="checkbox" value="{{userarr.idQT}}" [(ngModel)]="userQT[i].checked"></td>
+                        <td>{{(i+1)}}</td>
+                        <td>{{userarr.tenQT}}</td>
+                        <td>{{userarr.Vaitro.tenVT}}</td>
+                        <td>{{userarr.username}}</td>
+                        <td>{{userarr.Hethong.tenHT}}</td>
+                        <td (click)="openupdate(userarr.idQT);"><fa-icon [icon]="faPencil"></fa-icon></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <td colspan="10">
+                            <pagination-controls (pageChange)="p =$event"></pagination-controls>
+                    </td>
+                </tfoot>
+                
+            </table>
+    </div>
+</div>
+<app-add-user></app-add-user>  
